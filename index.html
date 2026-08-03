@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SNOWFLOW — Tech Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #0a0a0f;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+    #renderCanvas {
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+      outline: none;
+    }
+    #loadingScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
+      z-index: 1000;
+      transition: opacity 0.8s ease-out;
+    }
+    #loadingScreen.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .loadingTitle {
+      font-size: 3rem;
+      font-weight: 200;
+      letter-spacing: 0.5em;
+      color: #e8f1f8;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 40px rgba(200, 220, 255, 0.3);
+    }
+    .loadingBar {
+      width: 300px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loadingProgress {
+      height: 100%;
+      background: linear-gradient(90deg, #a8c7fa, #d4e4ff);
+      width: 0%;
+      transition: width 0.3s ease-out;
+      box-shadow: 0 0 20px rgba(168, 199, 250, 0.5);
+    }
+    .loadingText {
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: #8b949e;
+      text-transform: uppercase;
+    }
+    #noWebGPU {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      background: #0a0a0f;
+      color: #e8f1f8;
+      font-size: 1.25rem;
+      z-index: 2000;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="renderCanvas"></canvas>
+  
+  <div id="loadingScreen">
+    <div class="loadingTitle">Snowflow</div>
+    <div class="loadingBar">
+      <div class="loadingProgress" id="loadingProgress"></div>
+    </div>
+    <div class="loadingText" id="loadingText">Initializing</div>
+  </div>
+  
+  <div id="noWebGPU">WebGPU is required. Please use Chrome on Windows 10/11.</div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
